@@ -1,7 +1,7 @@
 {
     "default_server_config": {
         "m.homeserver": {
-            "base_url": "https://sevenchat.space:8468",
+            "base_url": "https://sevenchat.space",
             "server_name": "sevenchat.space"
         },
         "m.identity_server": {
