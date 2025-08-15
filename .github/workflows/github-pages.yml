@@ -37,13 +37,13 @@ jobs:
           yarn cache clean
           yarn install --network-timeout 300000
 
+      - name: Build SevenChat Web
+        run: yarn build
+
       - name: Copy config.json
         run: |
           mkdir -p webapp
           cp element.io/app/config.json webapp/config.json
-
-      - name: Build SevenChat Web
-        run: yarn build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
