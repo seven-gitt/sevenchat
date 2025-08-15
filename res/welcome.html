@@ -137,6 +137,26 @@
     .mx_Button_iconRoomDirectory {
         background-image: url("welcome/images/icon-room-directory.svg");
     }
+    .mx_Button_iconApple {
+        background-image: url("welcome/images/icon-apple.svg");
+    }
+    .mx_Button_iconWindows {
+        background-image: url("welcome/images/icon-windows.svg");
+    }
+
+    .mx_ButtonDownloadMac {
+        background-color: #2e2f32;
+        color: white !important;
+    }
+
+    .mx_ButtonDownloadWindows {
+        background-color: #0078d4;
+        color: white !important;
+    }
+
+    .mx_ButtonRow.mx_WelcomePage_downloadFunctions {
+        margin-top: 15px;
+    }
 
     /*
 .mx_WelcomePage_loggedIn is applied by EmbeddedPage from the Welcome component
@@ -179,6 +199,14 @@ we don't have an account and should hide them. No account == no guest account ei
             </a>
             <a href="#/register" class="mx_ButtonParent mx_ButtonCreateAccount mx_Button_iconCreateAccount">
                 <div class="mx_ButtonLabel">_t("action|create_account")</div>
+            </a>
+        </div>
+        <div class="mx_ButtonRow mx_WelcomePage_downloadFunctions">
+            <a href="install/mac/SevenChat-macOS.dmg" class="mx_ButtonParent mx_ButtonDownloadMac mx_Button_iconApple" download>
+                <div class="mx_ButtonLabel">Download Mac</div>
+            </a>
+            <a href="install/windows/" class="mx_ButtonParent mx_ButtonDownloadWindows mx_Button_iconWindows" download>
+                <div class="mx_ButtonLabel">Download Win</div>
             </a>
         </div>
         <div class="mx_ButtonRow mx_WelcomePage_guestFunctions">
