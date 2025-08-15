@@ -33,10 +33,15 @@ export default class Welcome extends React.PureComponent<EmptyObject> {
         };
 
         if (!pageUrl) {
-            // Fall back to default and replace $logoUrl in welcome.html
+            // Fall back to default and replace variables in welcome.html
             const brandingConfig = SdkConfig.getObject("branding");
             const logoUrl = brandingConfig?.get("auth_header_logo_url") ?? "themes/element/img/logos/element-logo.svg";
+            const downloadMacUrl = brandingConfig?.get("download_mac_url") ?? "install/mac/SevenChat-macOS.dmg";
+            const downloadWindowsUrl = brandingConfig?.get("download_windows_url") ?? "install/windows/";
+            
             replaceMap["$logoUrl"] = logoUrl;
+            replaceMap["$downloadMacUrl"] = downloadMacUrl;
+            replaceMap["$downloadWindowsUrl"] = downloadWindowsUrl;
             pageUrl = "welcome.html";
         }
 

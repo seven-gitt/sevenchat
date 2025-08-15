@@ -42,7 +42,7 @@ jobs:
           echo '{
             "default_server_config": {
               "m.homeserver": {
-                "base_url": "https://sevenchat.space",
+                "base_url": "https://sevenchat.space:8468",
                 "server_name": "sevenchat.space"
               },
               "m.identity_server": {
@@ -50,10 +50,14 @@ jobs:
               }
             },
             "disable_custom_urls": false,
-            "disable_guests": false,
+            "disable_guests": true,
             "disable_login_language_selector": false,
-            "disable_3pid_login": false,
-            "brand": "SevenChat"
+            "disable_3pid_login": true,
+            "brand": "SevenChat",
+            "branding": {
+              "download_mac_url": "install/mac/SevenChat-macOS.dmg",
+              "download_windows_url": "install/windows/SevenChat-Windows.exe"
+            }
           }' > config.json
 
       - name: Build SevenChat Web

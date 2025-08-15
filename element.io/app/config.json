@@ -42,6 +42,11 @@
     "app_name": "SevenChat",
     "welcome_page_url": "https://sevenchat.space",
     
+    "branding": {
+        "download_mac_url": "install/mac/SevenChat-macOS.dmg",
+        "download_windows_url": "install/windows/SevenChat-Windows.exe"
+    },
+    
     "integrations_ui_url": "https://scalar.vector.im/",
     "integrations_rest_url": "https://scalar.vector.im/api",
     "integrations_widgets_urls": [
