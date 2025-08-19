@@ -43,8 +43,8 @@
     "welcome_page_url": "https://sevenchat.space",
     
     "branding": {
-        "download_mac_url": "https://github.com/seven-gitt/sevenchat/releases/download/v1.0.0/SevenChat-1.11.106-universal.dmg",
-        "download_windows_url": "https://github.com/seven-gitt/sevenchat/releases/download/v1.0.0/Windows.zip"
+        "download_mac_url": "https://github.com/seven-gitt/sevenchat/releases/download/v1.0.0/SevenChat-universal.dmg",
+        "download_windows_url": "https://github.com/seven-gitt/sevenchat/releases/download/v1.0.0/sevenchat-desktop.exe"
     },
     
     "integrations_ui_url": "https://scalar.vector.im/",
