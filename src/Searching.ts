@@ -170,7 +170,53 @@ async function localSearch(
         searchArgs.room_id = roomId;
     }
 
-    const localResult = await eventIndex!.search(searchArgs);
+    // Check if search term looks like a URL pattern
+    const isUrlSearch = searchTerm.includes('.') || searchTerm.includes('://') || searchTerm.includes('/');
+    
+    // If searching for URL-like terms, try multiple search strategies
+    let localResult;
+    if (isUrlSearch) {
+        // Try exact URL search first
+        try {
+            localResult = await eventIndex!.search(searchArgs);
+        } catch (error) {
+            console.log("Exact URL search failed, trying alternative strategies");
+        }
+        
+        // If no results, try searching without protocol
+        if (!localResult || localResult.count === 0) {
+            const urlWithoutProtocol = searchTerm.replace(/^https?:\/\//, '');
+            if (urlWithoutProtocol !== searchTerm) {
+                const alternativeArgs = { ...searchArgs, search_term: urlWithoutProtocol };
+                try {
+                    localResult = await eventIndex!.search(alternativeArgs);
+                    console.log(`Trying alternative search with term: ${urlWithoutProtocol}`);
+                } catch (error) {
+                    console.log("Alternative URL search failed");
+                }
+            }
+        }
+        
+        // If still no results, try domain-only search
+        if (!localResult || localResult.count === 0) {
+            const domainMatch = searchTerm.match(/(?:https?:\/\/)?([^\/\s]+)/);
+            if (domainMatch && domainMatch[1]) {
+                const domainArgs = { ...searchArgs, search_term: domainMatch[1] };
+                try {
+                    localResult = await eventIndex!.search(domainArgs);
+                    console.log(`Trying domain search with term: ${domainMatch[1]}`);
+                } catch (error) {
+                    console.log("Domain search failed");
+                }
+            }
+        }
+    }
+    
+    // If no URL-specific search or no results, fall back to normal search
+    if (!localResult) {
+        localResult = await eventIndex!.search(searchArgs);
+    }
+    
     if (!localResult) {
         throw new Error("Local search failed");
     }
